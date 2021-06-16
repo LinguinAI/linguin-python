@@ -1,5 +1,6 @@
 from .exceptions import *
 
+
 class Response:
     CODE_MAP = {
         400: LinguinInputError,
@@ -16,5 +17,5 @@ class Response:
         if response.status_code == 200:
             return response.json()
         else:
-            raise cls.CODE_MAP[response.status_code](response.status_code, response.text)
-
+            raise cls.CODE_MAP[response.status_code](
+                response.status_code, response.text)

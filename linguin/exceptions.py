@@ -1,5 +1,6 @@
 """All exceptions for Linguin API"""
 
+
 class LinguinError(Exception):
     """Base class for Linguin errors"""
 
@@ -12,17 +13,22 @@ class LinguinError(Exception):
     def __str__(self):
         return self.message.format(status=self.status, content=self.content)
 
+
 class LinguinInputError(LinguinError):
     pass
+
 
 class LinguinNotFoundError(LinguinError):
     pass
 
+
 class LinguinAuthenticationError(LinguinError):
     pass
 
+
 class LinguinRateLimitError(LinguinError):
     pass
+
 
 class LinguinInternalError(LinguinError):
     pass
