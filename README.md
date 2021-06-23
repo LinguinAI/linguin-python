@@ -15,16 +15,16 @@ Get started with just a few lines of code:
 ```
 from linguin import Linguin
 
-    # go to https://linguin.ai to get your key
-    linguin = Linguin("YOUR_API_TOKEN")
+# go to https://linguin.ai to get your key
+linguin = Linguin("YOUR_API_TOKEN")
 
-    response = linguin.detect("test")
-    
-    response.is_success
-    # >> True
-   
-   response.result
-   # >> {'results': [{ 'lang': 'en', confidence: 1.0 }, ...]}
+response = linguin.detect("test")
+
+response.is_success
+# >> True
+
+response.result
+# >> {'results': [{ 'lang': 'en', confidence: 1.0 }, ...]}
 ```
 
 If anything goes wrong for example: empty query string:
