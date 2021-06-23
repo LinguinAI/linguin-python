@@ -21,7 +21,9 @@ class TestDetect(unittest.TestCase):
 
         response = self.linguin.detect(self.input_text)
 
-        assert response == successful_response
+        assert response.is_success == True
+        assert response.error == None
+        assert response.result == successful_response
         assert len(responses.calls) == 1
         assert responses.calls[0].request.url == self.url
         assert responses.calls[0].request.headers['Authorization'] == 'Bearer {token}'.format(token=self.api_token)
@@ -32,19 +34,23 @@ class TestDetect(unittest.TestCase):
         successful_response = {'results': [{'lang': 'en', 'confidence': 1.0}]}
         responses.add(responses.POST, self.url, json=successful_response, status=200)
 
-        with self.assertRaises(LinguinInputError):
-            self.linguin.detect('  ')
+        response = self.linguin.detect(' ')
 
         assert len(responses.calls) == 0
+        assert response.is_success == False
+        assert type(response.error) is LinguinInputError
+        assert response.result == None
 
     @responses.activate
     def test_detect_input_error(self):
         error_response = self.faker.text()
         responses.add(responses.POST, self.url, body=error_response, status=400)
 
-        with self.assertRaises(LinguinInputError):
-            self.linguin.detect(self.input_text)
+        response = self.linguin.detect(self.input_text)
 
+        assert response.is_success == False
+        assert type(response.error) is LinguinInputError
+        assert response.result == None
         assert len(responses.calls) == 1
         assert responses.calls[0].request.url == self.url
         assert responses.calls[0].request.headers['Authorization'] == 'Bearer {token}'.format(token=self.api_token)

@@ -4,14 +4,12 @@
 class LinguinError(Exception):
     """Base class for Linguin errors"""
 
-    message = 'Error code: {status}. {content}'
-
-    def __init__(self, status, content):
+    def __init__(self, status, message):
         self.status = status
-        self.content = content
+        self.message = message
 
     def __str__(self):
-        return self.message.format(status=self.status, content=self.content)
+        return 'Error code: {status}. {message}'.format(status=self.status, message=self.message)
 
 
 class LinguinInputError(LinguinError):
@@ -31,4 +29,7 @@ class LinguinRateLimitError(LinguinError):
 
 
 class LinguinInternalError(LinguinError):
+    pass
+
+class LinguinUnknownError(LinguinError):
     pass
