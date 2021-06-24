@@ -6,7 +6,9 @@ Linguin AI is free for up to 100 detections per day. You can get your API key [h
 
 ## Installation
 
-Coming soon!
+```
+pip3 install linguin
+```
 
 ## Usage
 
@@ -52,7 +54,7 @@ response = linguin.detect(" ", raise_on_error=True)
 # >> raises LinguinInputError
 ```
 
-See the list of all exceptions here.
+See the list of all exceptions [here](https://github.com/LinguinAI/linguin-python/blob/main/linguin/exceptions.py).
 
 ### Bulk detection
 
