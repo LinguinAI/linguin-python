@@ -2,6 +2,3 @@ requests
 responses
 faker
 pylint
-wheel
-build
-twine

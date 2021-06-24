@@ -82,3 +82,20 @@ response.result
 # >> {'daily_limit': 50000, 'detections_today': 4500, 'remaining_today': 45500}
 # for unlimited usage we return -1
 ```
+
+## Development
+
+After checking out the repo, run `pip3 install -r requirements.txt` to install dependencies.
+Run tests with `python3 -m unittest`
+
+## Contributing
+
+Bug reports and pull requests are welcome on GitHub at https://github.com/LinguinAI/linguin-python. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/LinguinAI/linguin-python/blob/master/CODE_OF_CONDUCT.md).
+
+## License
+
+The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+
+## Code of Conduct
+
+Everyone interacting in the Linguin project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/LinguinAI/linguin-python/blob/master/CODE_OF_CONDUCT.md).
