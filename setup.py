@@ -1,7 +1,5 @@
 from setuptools import re, setup
 
-VERSION = "0.0.1"
-
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
@@ -12,7 +10,7 @@ version = re.search(
 ).groups()
 
 setup(
-    name="linguin", # Replace with your own username
+    name="linguin",
     version='.'.join(version),
     author="Jan Schwenzien",
     author_email="jan@general-scripting.com",
