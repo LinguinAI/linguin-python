@@ -1,5 +1,4 @@
-import re
-from setuptools
+from setuptools import re, setup
 
 VERSION = "0.0.1"
 
@@ -8,11 +7,11 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 version = re.search(
     "^__version__ = \((\d+), (\d+), (\d+)\)$",
-    local_file('linguin/__init__.py').read(),
+    open('linguin/__init__.py', 'r').read(),
     re.MULTILINE
 ).groups()
 
-setuptools.setup(
+setup(
     name="linguin", # Replace with your own username
     version='.'.join(version),
     author="Jan Schwenzien",
@@ -20,10 +19,10 @@ setuptools.setup(
     description="API wrapper for the language detection as a service Linguin AI.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://linguin.ai/"
+    url="https://linguin.ai/",
     project_urls={
         "Bug Tracker": "https://github.com/LinguinAI/linguin-python/issues",
-        "Documentation": "TODO: !API docs"
+        "Documentation": "https://linguin.ai/api-docs/v1/"
     },
     classifiers=[
         "Programming Language :: Python :: 3",
