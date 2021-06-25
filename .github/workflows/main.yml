@@ -25,4 +25,4 @@ jobs:
           flake8 linguin/ --count --show-source --statistics
       - name: Test with pytest
         run: |
-          pytest
+          python -m pytest
