@@ -23,7 +23,9 @@ jobs:
       - name: Lint with flake8
         run: |
           flake8 linguin/ --count --show-source --statistics
+      - name: Preparation for testing
+        run: |
+          pip install -e .
       - name: Test with pytest
         run: |
-          export PYTHONPATH=.
-          python -m unittest
+          pytest
