@@ -1,6 +1,6 @@
 import requests
-from linguin.linguin_response import LinguinResponse
-from linguin.exceptions import LinguinInputError
+from .linguin_response import LinguinResponse
+from .exceptions import LinguinInputError
 
 
 class Linguin:

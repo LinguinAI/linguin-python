@@ -1,9 +1,9 @@
-from linguin.exceptions import LinguinInputError
-from linguin.exceptions import LinguinAuthenticationError
-from linguin.exceptions import LinguinNotFoundError
-from linguin.exceptions import LinguinRateLimitError
-from linguin.exceptions import LinguinInternalError
-from linguin.exceptions import LinguinUnknownError
+from .exceptions import LinguinInputError
+from .exceptions import LinguinAuthenticationError
+from .exceptions import LinguinNotFoundError
+from .exceptions import LinguinRateLimitError
+from .exceptions import LinguinInternalError
+from .exceptions import LinguinUnknownError
 
 
 class LinguinResponse:
