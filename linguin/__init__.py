@@ -1,4 +1,5 @@
-from .linguin import *  # noqa: F403,F401
-from .exceptions import *  # noqa: F403,F401
+# flake8: noqa
+from .linguin import *
+from .exceptions import *
 
 __version__ = (1, 0, 0)
