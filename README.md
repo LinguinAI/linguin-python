@@ -1,3 +1,5 @@
+[![PyPI version](https://badge.fury.io/py/linguin.svg)](https://badge.fury.io/py/linguin) ![build](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+
 # Linguin AI Python wrapper
 
 This is a Python wrapper for the [Linguin AI](https://linguin.ai) API (see [API docs](https://linguin.ai/api-docs/v1)) providing Language Detection as a Service.

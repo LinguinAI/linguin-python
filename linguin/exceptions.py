@@ -31,5 +31,6 @@ class LinguinRateLimitError(LinguinError):
 class LinguinInternalError(LinguinError):
     pass
 
+
 class LinguinUnknownError(LinguinError):
     pass

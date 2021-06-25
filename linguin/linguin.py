@@ -42,11 +42,11 @@ class Linguin:
         url = '{base}/{version}/detect'.format(base=self.BASE_URI, version=self.API_VERSION)
         payload = {'q': text}
         response = requests.post(url, data=payload, headers=self.headers)
-        # import code; code.interact(local=dict(globals(), **locals()))
-        if raise_on_error or self.raise_on_error: response.raise_on_error()
+
+        if raise_on_error or self.raise_on_error:
+            response.raise_on_error()
 
         return LinguinResponse(response=response)
-
 
     def bulk(self, texts, raise_on_error=False):
         '''Returns bulk detection response from the server and raises errors
@@ -69,7 +69,9 @@ class Linguin:
         url = '{base}/{version}/bulk'.format(base=self.BASE_URI, version=self.API_VERSION)
         payload = {'q[]': texts}
         response = requests.post(url, data=payload, headers=self.headers)
-        if raise_on_error or self.raise_on_error: response.raise_on_error()
+
+        if raise_on_error or self.raise_on_error:
+            response.raise_on_error()
 
         return LinguinResponse(response)
 
@@ -83,7 +85,9 @@ class Linguin:
         '''
         url = '{base}/{version}/status'.format(base=self.BASE_URI, version=self.API_VERSION)
         response = requests.get(url, headers=self.headers)
-        if raise_on_error or self.raise_on_error: response.raise_on_error()
+
+        if raise_on_error or self.raise_on_error:
+            response.raise_on_error()
 
         return LinguinResponse(response)
 
