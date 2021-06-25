@@ -1,4 +1,4 @@
-[![PyPI version](https://badge.fury.io/py/linguin.svg)](https://badge.fury.io/py/linguin) ![build](https://github.com/github/docs/actions/workflows/main.yml/badge.svg)
+[![PyPI version](https://badge.fury.io/py/linguin.svg)](https://badge.fury.io/py/linguin) ![build](https://github.com/LinguinAI/linguin-python/actions/workflows/main.yml/badge.svg)
 
 # Linguin AI Python wrapper
 
