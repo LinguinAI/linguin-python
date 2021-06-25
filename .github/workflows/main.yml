@@ -25,6 +25,5 @@ jobs:
           flake8 linguin/ --count --show-source --statistics
       - name: Test with pytest
         run: |
+          export PYTHONPATH=.
           python -m unittest
-          pip install -e ./
-          pytest
