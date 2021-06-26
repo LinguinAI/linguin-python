@@ -16,7 +16,7 @@ class TestBulk(unittest.TestCase):
 
     @responses.activate
     def test_bulk_success(self):
-        successful_response = [{'results': [{'lang': 'en', 'confidence': 1.0}]}]
+        successful_response = {'results': [[{'lang': 'en', 'confidence': 1.0}], [{'lang': 'de', 'confidence': 1.0}]]}
         responses.add(responses.POST, self.url, json=successful_response, status=200)
 
         response = self.linguin.bulk(self.input_texts)
@@ -33,7 +33,7 @@ class TestBulk(unittest.TestCase):
 
     @responses.activate
     def test_bulk_local_error(self):
-        successful_response = [{'results': [{'lang': 'en', 'confidence': 1.0}]}]
+        successful_response = {'results': [[{'lang': 'en', 'confidence': 1.0}], [{'lang': 'de', 'confidence': 1.0}]]}
         responses.add(responses.POST, self.url, json=successful_response, status=200)
 
         response = self.linguin.bulk(['', 'test'])

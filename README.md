@@ -70,7 +70,7 @@ response.is_success
 # >> True
 
 response.result
-# >> [{'results': [{'lang': 'en', 'confidence': 1.0}, ...]}, {...}, ...]
+# >> {'results': [[{'lang': 'en', 'confidence': 1.0}, ...], [{...}], ...]}
 ```
 
 ### Account status
