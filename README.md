@@ -85,6 +85,17 @@ response.result
 # for unlimited usage we return -1
 ```
 
+### Language list
+
+You can fetch the list of supported languages:
+
+```
+from linguin import Linguin
+
+languages = Linguin.languages()
+# >> { 'de': ["German", "Deutsch"], ... }
+```
+
 ## Development
 
 After checking out the repo, run `pip3 install -r requirements.txt` to install dependencies.

@@ -10,6 +10,7 @@ class Linguin:
         /detect
         /bulk
         /status
+        /languages
     """
 
     API_VERSION = 'v1'
@@ -90,6 +91,14 @@ class Linguin:
             response.raise_on_error()
 
         return LinguinResponse(response)
+
+    @classmethod
+    def languages(cls):
+        '''Returns list of supported languages'''
+        url = '{base}/{version}/languages'.format(base=cls.BASE_URI, version=cls.API_VERSION)
+        response = requests.get(url)
+
+        return response.json()
 
     @staticmethod
     def __sanitize(text):
