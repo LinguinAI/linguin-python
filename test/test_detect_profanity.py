@@ -5,21 +5,21 @@ from faker.providers import misc
 from linguin import Linguin
 from linguin import LinguinInputError
 
-class TestDetect(unittest.TestCase):
+class TestDetectProfanity(unittest.TestCase):
     def setUp(self):
         self.faker = Faker()
         self.faker.add_provider(misc)
         self.api_token = self.faker.uuid4()
         self.linguin = Linguin(self.api_token)
         self.input_text = self.faker.word()
-        self.url = 'https://api.linguin.ai/v1/detect'
+        self.url = 'https://api.linguin.ai/v2/detect/profanity'
 
     @responses.activate
     def test_detect_success(self):
-        successful_response = {'results': [{'lang': 'en', 'confidence': 1.0}]}
+        successful_response = {'score': 1.0}
         responses.add(responses.POST, self.url, json=successful_response, status=200)
 
-        response = self.linguin.detect(self.input_text)
+        response = self.linguin.detect_profanity(self.input_text)
 
         assert response.is_success == True
         assert response.error == None
@@ -31,10 +31,10 @@ class TestDetect(unittest.TestCase):
 
     @responses.activate
     def test_detect_local_error(self):
-        successful_response = {'results': [{'lang': 'en', 'confidence': 1.0}]}
+        successful_response = {'score': 1.0}
         responses.add(responses.POST, self.url, json=successful_response, status=200)
 
-        response = self.linguin.detect(' ')
+        response = self.linguin.detect_profanity(' ')
 
         assert len(responses.calls) == 0
         assert response.is_success == False
@@ -46,7 +46,7 @@ class TestDetect(unittest.TestCase):
         error_response = self.faker.text()
         responses.add(responses.POST, self.url, body=error_response, status=400)
 
-        response = self.linguin.detect(self.input_text)
+        response = self.linguin.detect_profanity(self.input_text)
 
         assert response.is_success == False
         assert type(response.error) is LinguinInputError

@@ -5,21 +5,21 @@ from faker.providers import misc
 from linguin import Linguin
 from linguin import LinguinInputError
 
-class TestBulk(unittest.TestCase):
+class TestDetectLanguage(unittest.TestCase):
     def setUp(self):
         self.faker = Faker()
         self.faker.add_provider(misc)
         self.api_token = self.faker.uuid4()
         self.linguin = Linguin(self.api_token)
-        self.input_texts = self.faker.words()
-        self.url = 'https://api.linguin.ai/v1/bulk'
+        self.input_text = self.faker.word()
+        self.url = 'https://api.linguin.ai/v2/detect/language'
 
     @responses.activate
-    def test_bulk_success(self):
-        successful_response = {'results': [[{'lang': 'en', 'confidence': 1.0}], [{'lang': 'de', 'confidence': 1.0}]]}
+    def test_detect_success(self):
+        successful_response = {'results': [{'lang': 'en', 'confidence': 1.0}]}
         responses.add(responses.POST, self.url, json=successful_response, status=200)
 
-        response = self.linguin.bulk(self.input_texts)
+        response = self.linguin.detect_language(self.input_text)
 
         assert response.is_success == True
         assert response.error == None
@@ -27,16 +27,14 @@ class TestBulk(unittest.TestCase):
         assert len(responses.calls) == 1
         assert responses.calls[0].request.url == self.url
         assert responses.calls[0].request.headers['Authorization'] == 'Bearer {token}'.format(token=self.api_token)
-
-        body = '&'.join(['q%5B%5D={}'.format(word) for word in self.input_texts])
-        assert responses.calls[0].request.body == body
+        assert responses.calls[0].request.body == 'q={input}'.format(input=self.input_text)
 
     @responses.activate
-    def test_bulk_local_error(self):
-        successful_response = {'results': [[{'lang': 'en', 'confidence': 1.0}], [{'lang': 'de', 'confidence': 1.0}]]}
+    def test_detect_local_error(self):
+        successful_response = {'results': [{'lang': 'en', 'confidence': 1.0}]}
         responses.add(responses.POST, self.url, json=successful_response, status=200)
 
-        response = self.linguin.bulk(['', 'test'])
+        response = self.linguin.detect_language(' ')
 
         assert len(responses.calls) == 0
         assert response.is_success == False
@@ -44,11 +42,11 @@ class TestBulk(unittest.TestCase):
         assert response.result == None
 
     @responses.activate
-    def test_bulk_input_error(self):
+    def test_detect_input_error(self):
         error_response = self.faker.text()
         responses.add(responses.POST, self.url, body=error_response, status=400)
 
-        response = self.linguin.bulk(self.input_texts)
+        response = self.linguin.detect_language(self.input_text)
 
         assert response.is_success == False
         assert type(response.error) is LinguinInputError
@@ -56,6 +54,4 @@ class TestBulk(unittest.TestCase):
         assert len(responses.calls) == 1
         assert responses.calls[0].request.url == self.url
         assert responses.calls[0].request.headers['Authorization'] == 'Bearer {token}'.format(token=self.api_token)
-
-        body = '&'.join(['q%5B%5D={}'.format(word) for word in self.input_texts])
-        assert responses.calls[0].request.body == body
+        assert responses.calls[0].request.body == 'q={input}'.format(input=self.input_text)
