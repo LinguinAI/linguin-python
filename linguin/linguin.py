@@ -8,7 +8,9 @@ class Linguin:
 
     Supported endpoints:
         /detect/language
+        /detect/profanity
         /bulk_detect/language
+        /bulk_detect/profanity
         /status
         /languages
     """
