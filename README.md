@@ -2,7 +2,7 @@
 
 # Linguin AI Python wrapper
 
-This is a Python wrapper for the [Linguin AI](https://linguin.ai) API (see [API docs](https://linguin.ai/api-docs/v1)) providing Language Detection as a Service.
+This is a Python wrapper for the [Linguin AI](https://linguin.ai) API (see [API docs](https://linguin.ai/api-docs/v2)) providing Language Detection as a Service.
 
 Linguin AI is free for up to 100 detections per day. You can get your API key [here](https://linguin.ai).
 
@@ -22,19 +22,27 @@ from linguin import Linguin
 # go to https://linguin.ai to get your key
 linguin = Linguin("YOUR_API_TOKEN")
 
-response = linguin.detect("test")
+response = linguin.detect_language("test")
 
 response.is_success
 # >> True
 
 response.result
 # >> {'results': [{ 'lang': 'en', confidence: 1.0 }, ...]}
+
+response = linguin.detect_profanity("you moron")
+
+response.is_success
+# >> True
+
+response.result
+# >> {'score':  0.9981}
 ```
 
 If anything goes wrong for example: empty query string:
 
 ```
-response = linguin.detect(" ")
+response = linguin.detect_language(" ")
     
 response.is_success
 # >> False
@@ -52,7 +60,7 @@ response.error.message
 If you prefer to handle exceptions instead:
 
 ```
-response = linguin.detect(" ", raise_on_error=True)
+response = linguin.detect_language(" ", raise_on_error=True)
 # >> raises LinguinInputError
 ```
 
@@ -60,17 +68,30 @@ See the list of all exceptions [here](https://github.com/LinguinAI/linguin-pytho
 
 ### Bulk detection
 
-To detect the language of multiple texts with one API call, you can pass them as an array to the `bulk` method.
+To detect the language of multiple texts with one API call, you can pass them as an array to the `bulk_detect_language` method.
 The results will be returned in the same order as the texts. All texts have to not be empty.
 
 ```
-response = linguin.bulk(["test", "Bahnhof", "고마워요"])
+response = linguin.bulk_detect_language(["test", "Bahnhof", "고마워요"])
 
 response.is_success
 # >> True
 
 response.result
 # >> {'results': [[{'lang': 'en', 'confidence': 1.0}, ...], [{...}], ...]}
+```
+
+To check multiple texts for profanity with one API call, you can pass them as an array to the `bulk_detect_profanity` method.
+The results will be returned in the same order as the texts. All texts have to not be empty.
+
+```
+response = linguin.bulk_detect_profanity(["a test", "you are a moron"])
+
+response.is_success
+# >> True
+
+response.result
+# >> {'scores': [0.0124, 0.9981]}
 ```
 
 ### Account status
