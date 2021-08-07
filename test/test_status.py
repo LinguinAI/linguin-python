@@ -11,7 +11,7 @@ class TestStatus(unittest.TestCase):
         self.faker.add_provider(misc)
         self.api_token = self.faker.uuid4()
         self.linguin = Linguin(self.api_token)
-        self.url = 'https://api.linguin.ai/v1/status'
+        self.url = 'https://api.linguin.ai/v2/status'
 
     @responses.activate
     def test_status_success(self):

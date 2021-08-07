@@ -4,7 +4,7 @@ from linguin import Linguin
 
 class TestLanguages(unittest.TestCase):
     def setUp(self):
-        self.url = 'https://api.linguin.ai/v1/languages'
+        self.url = 'https://api.linguin.ai/v2/languages'
 
     @responses.activate
     def test_languages(self):
