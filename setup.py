@@ -20,7 +20,7 @@ setup(
     url="https://linguin.ai/",
     project_urls={
         "Bug Tracker": "https://github.com/LinguinAI/linguin-python/issues",
-        "Documentation": "https://linguin.ai/api-docs/v1/"
+        "Documentation": "https://linguin.ai/api-docs/v2/"
     },
     classifiers=[
         "Programming Language :: Python :: 3",
